@@ -1,0 +1,20 @@
+{
+    "links": [
+        {
+            "title": "Portfolio",
+            "slug": "portfolio"
+        },
+        {
+            "title": "Afdrukken",
+            "slug": "afdrukken"
+        },
+        {
+            "title": "Over",
+            "slug": "over"
+        },
+        {
+            "title": "Boek een shoot",
+            "slug": "boek-een-shoot"
+        }
+    ]
+}

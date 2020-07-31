@@ -1,0 +1,87 @@
+@import './node_modules/normalize.css/normalize.css';
+
+@font-face {
+    font-family: 'Noto Serif';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/NotoSerif-Regular.ttf');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Serif';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/fonts/NotoSerif-Bold.ttf');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Overpass SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/fonts/Overpass-SemiBold.ttf');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Overpass Black';
+    font-style: normal;
+    font-weight: 900;
+    src: url('/fonts/Overpass-Black.ttf');
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+menu,
+ol,
+ul {
+    padding: 0;
+}
+
+dd {
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    color: var(--black);
+    font-family: var(--font-body);
+    font-size: 16px;
+    background-color: #fff;
+    -webkit-overflow-scrolling: touch;
+}
+
+a {
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 2px solid;
+    border-bottom-color: var(--black);
+    transition: border-bottom-color 0.2s;
+
+    &:hover,
+    &:active,
+    &:focus {
+        border-bottom-color: var(--bondi-blue);
+    }
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+p {
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
