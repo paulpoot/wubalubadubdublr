@@ -1,24 +1,47 @@
 import React from 'react';
-import next, { GetServerSideProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { resolveBySlug } from '~/lib/contentful/slug-resolver';
 import { Page } from '~/types/contentful';
 import DefaultLayout from '~/src/layout';
 import { initializeApollo } from '~/lib/apolloClient';
-import { CHARACTER_INDEX } from '~/src/graphql/characters/characterIndex.query';
-import { LOCATION_INDEX } from '../graphql/locations/locationIndex.query';
-import { useQuery, ApolloQueryResult } from '@apollo/client';
+import { LOCATION_INDEX } from '~/src/graphql/locations/locationIndex.query';
+import { ApolloQueryResult } from '@apollo/client';
 import { LocationOverview, LocationOverviewQueryResult, LocationOverviewItem } from '~/types/rmapi/location/overview';
-import { EPISODE_INDEX } from '../graphql/episodes/episodeIndex.query';
+import { EPISODE_INDEX } from '~/src/graphql/episodes/episodeIndex.query';
 import { EpisodeOverviewQueryResult, EpisodeOverview } from '~/types/rmapi/episode/overview';
+import Masthead from '~/src/components/molecules/Masthead';
+import { RichText } from '~/src/blocks/rich-text';
+import Container from '~/src/components/templates/Container';
+import { DimensionOverview } from '~/types/rmapi/dimension/overview';
+import LinkList from '~/src/components/molecules/LinkList';
+import { LinkListItem } from '~/src/components/molecules/LinkList/LinkList';
 
 type Props = {
     page: Page;
-    characters: unknown;
+    locations: [];
+    dimensions: DimensionOverview;
+    episodes: [];
 };
 
-function HomePage({ page, characters }: Props): JSX.Element {
+const mapDimensions = (dimensions: DimensionOverview): LinkListItem[] =>
+    dimensions.sort().map((dimension) => ({ text: dimension, url: dimension }));
+const mapLocations = (locations: LocationOverview): LinkListItem[] =>
+    locations.map((location) => ({ text: location.name, url: `/locations/${location.id}` }));
+const mapEpisodes = (episodes: EpisodeOverview): LinkListItem[] =>
+    episodes.map((episode) => ({ text: `${episode.episode} - ${episode.name}`, url: `/episodes/${episode.id}` }));
+
+function HomePage({ page, locations, dimensions, episodes }: Props): JSX.Element {
     return (
         <>
+            <Masthead>
+                <RichText document={page.content} />
+            </Masthead>
+
+            <Container>
+                <LinkList title={page.microcopy['dimensions.title']} items={mapDimensions(dimensions)} />
+                <LinkList title={page.microcopy['locations.title']} items={mapLocations(locations)} />
+                <LinkList title={page.microcopy['episodes.title']} items={mapEpisodes(episodes)} />
+            </Container>
         </>
     );
 }
@@ -33,20 +56,22 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     // Keep querying server until there is no next page to build index
     while (nextLocationPage) {
-        const { data: locationOverview }: ApolloQueryResult<LocationOverviewQueryResult> = await apolloClient.query<LocationOverviewQueryResult>({
+        const { data: locationOverview }: ApolloQueryResult<LocationOverviewQueryResult> = await apolloClient.query<
+            LocationOverviewQueryResult
+        >({
             query: LOCATION_INDEX,
-            variables: { page: nextLocationPage }
-        })
+            variables: { page: nextLocationPage },
+        });
         const results = locationOverview?.locations.results;
 
         locations = results ? [...locations, ...results] : locations;
-        nextLocationPage = locationOverview?.locations.info.next
+        nextLocationPage = locationOverview?.locations.info.next;
     }
 
     // Determine unique dimensions based on location data
-    const dimensions = [...new Set(locations.map(
-        (location: LocationOverviewItem) => location.dimension
-    ))];
+    const dimensions: DimensionOverview = [
+        ...new Set(locations.map((location: LocationOverviewItem) => location.dimension)),
+    ];
 
     //TODO: Abstract and put data behind caching layer
     let nextEpisodePage: EpisodeOverviewQueryResult['episodes']['info']['next'] = 1;
@@ -54,14 +79,16 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     // Keep querying server until there is no next page to build index
     while (nextEpisodePage) {
-        const { data: EpisodeOverview }: ApolloQueryResult<EpisodeOverviewQueryResult> = await apolloClient.query<EpisodeOverviewQueryResult>({
+        const { data: EpisodeOverview }: ApolloQueryResult<EpisodeOverviewQueryResult> = await apolloClient.query<
+            EpisodeOverviewQueryResult
+        >({
             query: EPISODE_INDEX,
-            variables: { page: nextEpisodePage }
-        })
+            variables: { page: nextEpisodePage },
+        });
         const results = EpisodeOverview?.episodes.results;
 
         episodes = results ? [...episodes, ...results] : episodes;
-        nextEpisodePage = EpisodeOverview?.episodes.info.next
+        nextEpisodePage = EpisodeOverview?.episodes.info.next;
     }
 
     return {
@@ -69,7 +96,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
             page,
             locations,
             dimensions,
-            episodes
+            episodes,
         },
     };
 };

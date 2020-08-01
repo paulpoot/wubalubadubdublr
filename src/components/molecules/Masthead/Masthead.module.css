@@ -1,0 +1,16 @@
+.masthead {
+    .container {
+        padding-top: 100px;
+        background-color: var(--black-lighter);
+
+        .content {
+            p {
+                max-width: 600px;
+            }
+
+            > *:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

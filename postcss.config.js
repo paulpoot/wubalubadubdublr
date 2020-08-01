@@ -5,14 +5,15 @@ module.exports = {
     plugins: {
         'postcss-css-variables': {
             variables: {
-                '--bondi-blue': '#00adb5',
-                '--shamrock-green': '#2cc390',
-                '--black': '#333',
-                '--alabaster-grey': '#f9f9f9',
+                '--acid-vat-green': '#aacc00',
+                '--acid-vat-green-lighter': '#eeef20',
+                '--black': '#0b132b',
+                '--black-lighter': '#1c2541',
+                '--black-lightest': '#3a506b',
+                '--grey': '#f9f9f9',
                 '--white': '#fff',
-                '--font-body': '"Noto Serif", sans-serif',
-                '--font-heading-light': '"Overpass SemiBold", sans-serif',
-                '--font-heading': '"Overpass Black", sans-serif',
+                '--font-body': '"Poppins", sans-serif',
+                '--font-heading': '"UnicaOne", sans-serif',
                 '--box-shadow-1': '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
                 '--box-shadow-2': '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
             },

@@ -1,13 +1,14 @@
-import { Asset } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
+import { Microcopy, RawMicrocopy } from './microcopy';
 
 export type Page = Seo & {
-    title: string;
-    seoDescription: string;
-    openGraphImage: Asset;
-    robots: string;
-    slug: string;
     content: Document;
+    microcopy: Microcopy;
+};
+
+export type RawPage = Seo & {
+    content: Document;
+    microcopy: RawMicrocopy[];
 };
 
 export type Seo = {

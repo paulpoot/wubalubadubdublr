@@ -7,7 +7,7 @@ export const EPISODE_INDEX = gql`
                 id
                 name
                 episode
-            },
+            }
             info {
                 next
             }

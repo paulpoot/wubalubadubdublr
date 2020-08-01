@@ -1,34 +1,26 @@
 @import './node_modules/normalize.css/normalize.css';
 
 @font-face {
-    font-family: 'Noto Serif';
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    src: url('/fonts/NotoSerif-Regular.ttf');
+    src: url('/fonts/Poppins-Regular.ttf');
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Noto Serif';
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
-    src: url('/fonts/NotoSerif-Bold.ttf');
+    src: url('/fonts/Poppins-Bold.ttf');
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Overpass SemiBold';
+    font-family: 'UnicaOne';
     font-style: normal;
     font-weight: 600;
-    src: url('/fonts/Overpass-SemiBold.ttf');
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Overpass Black';
-    font-style: normal;
-    font-weight: 900;
-    src: url('/fonts/Overpass-Black.ttf');
+    src: url('/fonts/UnicaOne-Regular.ttf');
     font-display: swap;
 }
 
@@ -48,28 +40,30 @@ dd {
 
 body {
     margin: 0;
-    color: var(--black);
+    background-color: var(--black);
+    color: var(--white);
     font-family: var(--font-body);
     font-size: 16px;
-    background-color: #fff;
     -webkit-overflow-scrolling: touch;
 }
 
 a {
-    color: var(--black);
+    color: var(--white);
     text-decoration: none;
     border-bottom: 2px solid;
-    border-bottom-color: var(--black);
+    border-bottom-color: var(--acid-vat-green);
     transition: border-bottom-color 0.2s;
 
     &:hover,
     &:active,
     &:focus {
-        border-bottom-color: var(--bondi-blue);
+        border-bottom-color: var(--acid-vat-green-lighter);
     }
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: var(--font-heading);
 }
 
@@ -82,6 +76,6 @@ h2 {
 }
 
 p {
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1.5;
 }

@@ -9,9 +9,7 @@ interface Props {
 }
 
 const Container: NextComponentType<NextPageContext, {}, Props> = ({ children, className }: Props) => (
-    <div className={classNames(css.container, className)}>
-        {children}
-    </div>
+    <div className={classNames(css.container, className)}>{children}</div>
 );
 
 export default Container;

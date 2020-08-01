@@ -16,10 +16,10 @@ const DefaultLayout = ({ children, pageProps: { page, errorCode } }: Props): JSX
     errorCode ? (
         <>{children}</>
     ) : (
-            <Layout seo={mapSeo(page)}>
-                <Header></Header>
-                {children}
-            </Layout>
-        );
+        <Layout seo={mapSeo(page)}>
+            <Header></Header>
+            {children}
+        </Layout>
+    );
 
 export default DefaultLayout;

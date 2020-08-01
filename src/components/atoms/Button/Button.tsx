@@ -11,13 +11,17 @@ export type Props = {
 
 const Button: React.FunctionComponent<Props> = ({ text, url, className }: Props) => {
     if (url.match(/(https:\/\/)/)) {
-        return <a className={classnames(css.button, className)} href={url}>{text}</a>
+        return (
+            <a className={classnames(css.button, className)} href={url}>
+                {text}
+            </a>
+        );
     } else {
         return (
             <Link href={url}>
                 <a className={classnames(css.button, className)}>{text}</a>
             </Link>
-        )
+        );
     }
 };
 

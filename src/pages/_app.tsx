@@ -3,8 +3,8 @@ import { AppProps } from 'next/app';
 import '~/styles.css';
 import { NextPage } from 'next';
 import { Page } from '~/types/contentful';
-import { ApolloProvider } from '@apollo/client'
-import { useApollo } from '~/lib/apolloClient'
+import { ApolloProvider } from '@apollo/client';
+import { useApollo } from '~/lib/apolloClient';
 
 export type WubNextPage<P> = NextPage<P> & {
     Layout: React.FunctionComponent<{
@@ -23,7 +23,7 @@ const Noop = ({ children }: PropsWithChildren<{}>): React.ReactNode => children;
 
 const App = ({ Component, pageProps }: WubAppProps): JSX.Element => {
     const Layout = Component.Layout || Noop;
-    const apolloClient = useApollo(pageProps.initialApolloState)
+    const apolloClient = useApollo(pageProps.initialApolloState);
 
     return (
         <ApolloProvider client={apolloClient}>

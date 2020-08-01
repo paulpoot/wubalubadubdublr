@@ -2,13 +2,11 @@
     display: inline-block;
     padding: 14px 48px 12px 48px;
     color: var(--white);
-    font-family: var(--font-heading-light);
+    font-family: var(--font-body);
     font-size: 1rem;
     line-height: 1;
-    text-transform: uppercase;
-    background: var(--black);
-    border: solid 4px;
-    border-color: var(--bondi-blue);
+    background-color: var(--black-lighter);
+    border: 0px;
     border-radius: 80px;
     box-shadow: var(--box-shadow-1);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -16,7 +14,8 @@
     &:hover,
     &:active,
     &:focus {
-        border-color: var(--shamrock-green);
+        color: var(--acid-vat-green);
+        background-color: var(--black-lightest);
         box-shadow: var(--box-shadow-2);
     }
 }

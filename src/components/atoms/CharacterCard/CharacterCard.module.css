@@ -1,0 +1,27 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    border-radius: 16px;
+    border: solid 1px var(--black-lightest);
+    overflow: hidden;
+    background-color: var(--black-lighter);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: var(--box-shadow-1);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    .content {
+        padding: 32px;
+
+        h3 {
+            margin: 0;
+        }
+    }
+}

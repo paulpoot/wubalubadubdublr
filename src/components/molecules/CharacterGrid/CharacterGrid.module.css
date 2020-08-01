@@ -1,0 +1,22 @@
+.characterGrid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .item {
+        margin-bottom: 2%;
+        flex: 0 0 32%;
+    }
+}
+
+@media (--mobile) {
+    .characterGrid {
+        flex-direction: column;
+
+        .item {
+            margin-bottom: 32px;
+            flex: 0 0 100%;
+        }
+    }
+}
