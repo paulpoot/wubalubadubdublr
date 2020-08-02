@@ -1,22 +1,18 @@
 .characterGrid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    .item {
-        margin-bottom: 2%;
-        flex: 0 0 32%;
-    }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    gap: 32px 32px;
+    grid-template-areas: '. . .';
 }
 
 @media (--mobile) {
     .characterGrid {
-        flex-direction: column;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-areas: '.';
 
         .item {
-            margin-bottom: 32px;
-            flex: 0 0 100%;
+            margin: 0 auto;
         }
     }
 }

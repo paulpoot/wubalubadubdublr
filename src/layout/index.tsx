@@ -3,6 +3,7 @@ import { Page } from '~/types/contentful';
 import Layout from '~/src/components/templates/Layout';
 import Header from '~/src/components/molecules/Header';
 import { mapSeo } from '~/lib/contentful/mapper';
+import Footer from '~/src/components/molecules/Footer';
 
 export type Props = {
     children: React.ReactNode;
@@ -17,8 +18,9 @@ const DefaultLayout = ({ children, pageProps: { page, errorCode } }: Props): JSX
         <>{children}</>
     ) : (
         <Layout seo={mapSeo(page)}>
-            <Header></Header>
+            <Header />
             {children}
+            <Footer />
         </Layout>
     );
 

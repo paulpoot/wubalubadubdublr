@@ -1,0 +1,50 @@
+.characterPassport {
+    display: grid;
+    margin-top: 64px;
+    padding: 48px;
+    background-color: var(--black-lighter);
+    border-radius: 32px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 32px 32px;
+    grid-template-areas: '. .';
+
+    .portrait {
+        img {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-bottom: 0;
+        }
+    }
+
+    .dataList {
+        margin: 0;
+
+        dt {
+            font-size: 0.875rem;
+            line-height: 1.57;
+            text-transform: uppercase;
+        }
+
+        dd {
+            margin-bottom: 16px;
+            line-height: 1.57;
+        }
+    }
+}
+
+@media (--mobile) {
+    .characterPassport {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 16px 16px;
+        grid-template-areas: '.' '.';
+
+        .item {
+            margin: 0 auto;
+        }
+    }
+}

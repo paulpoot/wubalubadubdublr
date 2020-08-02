@@ -17,7 +17,7 @@
     "stylelint-fix": "stylelint \"*.css\" \"**/*.css\" --fix",
     "build-storybook": "NODE_ENV=production build-storybook -s ./public -c .storybook",
     "test": "jest --passWithNoTests",
-    "qa": "npm run test && npm run prettier && npm run lint && npm run stylelint && npm run build && npm run bundlesize && npm run build-storybook",
+    "qa": "npm run test && npm run prettier && npm run lint && npm run stylelint && npm run build",
     "microcopy-fetch": "node client/microcopy-fetch.js"
   },
   "dependencies": {

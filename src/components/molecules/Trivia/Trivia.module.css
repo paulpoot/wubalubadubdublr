@@ -1,0 +1,7 @@
+.trivia {
+    margin-top: 32px;
+    margin-bottom: 32px;
+    padding: 16px 32px;
+    border-radius: 16px;
+    background-color: var(--black-lighter);
+}

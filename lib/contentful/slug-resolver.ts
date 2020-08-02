@@ -1,6 +1,6 @@
 import { getEntryCollection } from './index';
 import { RawPage, Page } from '~/types/contentful';
-import { mapMicrocopy } from './mapper';
+import { mapPage } from './mapper';
 
 export const resolveBySlug = async (slug: string): Promise<Page> => {
     const entries = await getEntryCollection<RawPage>('page', {
@@ -12,8 +12,5 @@ export const resolveBySlug = async (slug: string): Promise<Page> => {
         throw new Error(`Page not found ${slug}`);
     }
 
-    return {
-        ...entries.items[0].fields,
-        microcopy: mapMicrocopy(entries.items[0].fields.microcopy),
-    };
+    return mapPage(entries.items[0].fields);
 };

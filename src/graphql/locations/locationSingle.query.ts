@@ -6,6 +6,7 @@ export const LOCATION_SINGLE = gql`
             name
             dimension
             residents {
+                id
                 name
                 image
             }

@@ -5,12 +5,16 @@ import CharacterCard from '../../atoms/CharacterCard';
 
 export type Props = {
     characters: CharacterOverviewItem[];
+    noCharactersFound: string;
 };
 
-const CharacterGrid: React.FunctionComponent<Props> = ({ characters }: Props) => (
+const CharacterGrid: React.FunctionComponent<Props> = ({ characters, noCharactersFound }: Props) => (
     <div className={css.characterGrid}>
-        {characters &&
-            characters.map((character, key) => <CharacterCard className={css.item} character={character} key={key} />)}
+        {characters && characters[0].name ? (
+            characters.map((character, key) => <CharacterCard className={css.item} character={character} key={key} />)
+        ) : (
+            <p>{noCharactersFound}</p>
+        )}
     </div>
 );
 

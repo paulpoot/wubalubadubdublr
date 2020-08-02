@@ -6,6 +6,7 @@ export const EPISODE_SINGLE = gql`
             name
             episode
             characters {
+                id
                 name
                 image
             }

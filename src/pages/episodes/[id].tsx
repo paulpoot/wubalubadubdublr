@@ -31,7 +31,10 @@ function EpisodePage({ page, episode }: Props): JSX.Element {
                 <h1>
                     <small>{episode.episode}</small> {episode.name}
                 </h1>
-                <CharacterGrid characters={episode.characters} />
+                <CharacterGrid
+                    characters={episode.characters}
+                    noCharactersFound={page.microcopy['characters.noneFound']}
+                />
             </Container>
         </>
     );

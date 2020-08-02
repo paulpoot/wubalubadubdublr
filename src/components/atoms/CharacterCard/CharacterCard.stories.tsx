@@ -10,6 +10,7 @@ export default {
 };
 
 const mock = {
+    id: '38',
     name: 'Beth Smith',
     image: 'https://rickandmortyapi.com/api/character/avatar/38.jpeg',
 };

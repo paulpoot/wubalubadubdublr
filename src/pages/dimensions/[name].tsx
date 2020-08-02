@@ -11,15 +11,15 @@ import Container from '~/src/components/templates/Container';
 import Button from '~/src/components/atoms/Button';
 import { injectString } from '~/lib/utils/template';
 import CharacterGrid from '~/src/components/molecules/CharacterGrid';
-import { LocationSingle, LocationSingleQueryResult } from '~/types/rmapi/location/single';
-import { LOCATION_SINGLE } from '~/src/graphql/locations/locationSingle.query';
+import { DIMENSION_SINGLE } from '~/src/graphql/dimensions/dimensionSingle.query';
+import { DimensionSingleQueryResult, DimensionSingle } from '~/types/rmapi/dimension/single';
 
 type Props = {
     page: Page;
-    location: LocationSingle;
+    dimension: DimensionSingle;
 };
 
-function LocationPage({ page, location }: Props): JSX.Element {
+function DimensionPage({ page, dimension }: Props): JSX.Element {
     return (
         <>
             <Masthead>
@@ -28,44 +28,47 @@ function LocationPage({ page, location }: Props): JSX.Element {
 
             <Container>
                 <Button text={page.microcopy['common.backToHomePage']} url="/" />
-                <h1>
-                    <small>{location.dimension}</small> {location.name}
-                </h1>
-                <CharacterGrid
-                    characters={location.residents}
-                    noCharactersFound={page.microcopy['characters.noneFound']}
-                />
+                <h1>{dimension[0].dimension}</h1>
+                {dimension.map((location) => (
+                    <>
+                        <h2>{location.name}</h2>
+                        <CharacterGrid
+                            characters={location.residents}
+                            noCharactersFound={page.microcopy['characters.noneFound']}
+                        />
+                    </>
+                ))}
             </Container>
         </>
     );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { id } = context.query;
+    const { name } = context.query;
 
-    let page = await resolveBySlug('location/id');
+    let page = await resolveBySlug('dimension/name');
     const apolloClient = initializeApollo();
 
-    const { data: location }: ApolloQueryResult<LocationSingleQueryResult> = await apolloClient.query<
-        LocationSingleQueryResult
+    const { data: dimension }: ApolloQueryResult<DimensionSingleQueryResult> = await apolloClient.query<
+        DimensionSingleQueryResult
     >({
-        query: LOCATION_SINGLE,
-        variables: { id },
+        query: DIMENSION_SINGLE,
+        variables: { dimension: name },
     });
 
     page = {
         ...page,
-        title: injectString(page.title, { title: `${location?.location.name}, ${location?.location.dimension}` }),
+        title: injectString(page.title, { title: `${dimension?.locations.results[0].dimension}` }),
     };
 
     return {
         props: {
             page,
-            location: location?.location,
+            dimension: dimension?.locations.results,
         },
     };
 };
 
-LocationPage.Layout = DefaultLayout;
+DimensionPage.Layout = DefaultLayout;
 
-export default LocationPage;
+export default DimensionPage;

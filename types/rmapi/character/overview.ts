@@ -1,4 +1,5 @@
 export type CharacterOverviewItem = {
+    id: string;
     name: string;
     image: string;
 };

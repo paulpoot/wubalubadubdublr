@@ -15,6 +15,7 @@ import Container from '~/src/components/templates/Container';
 import { DimensionOverview } from '~/types/rmapi/dimension/overview';
 import LinkList from '~/src/components/molecules/LinkList';
 import { LinkListItem } from '~/src/components/molecules/LinkList/LinkList';
+import TriviaComponent from '~/src/components/molecules/Trivia';
 
 type Props = {
     page: Page;
@@ -24,7 +25,7 @@ type Props = {
 };
 
 const mapDimensions = (dimensions: DimensionOverview): LinkListItem[] =>
-    dimensions.sort().map((dimension) => ({ text: dimension, url: dimension }));
+    dimensions.sort().map((dimension) => ({ text: dimension, url: `/dimensions/${dimension}` }));
 const mapLocations = (locations: LocationOverview): LinkListItem[] =>
     locations.map((location) => ({ text: location.name, url: `/locations/${location.id}` }));
 const mapEpisodes = (episodes: EpisodeOverview): LinkListItem[] =>
@@ -41,6 +42,12 @@ function HomePage({ page, locations, dimensions, episodes }: Props): JSX.Element
                 <LinkList title={page.microcopy['dimensions.title']} items={mapDimensions(dimensions)} />
                 <LinkList title={page.microcopy['locations.title']} items={mapLocations(locations)} />
                 <LinkList title={page.microcopy['episodes.title']} items={mapEpisodes(episodes)} />
+
+                {page.trivia && (
+                    <TriviaComponent titlePrefix={page.microcopy['trivia.titlePrefix']} factTitle={page.trivia.title}>
+                        <RichText document={page.trivia.content} />
+                    </TriviaComponent>
+                )}
             </Container>
         </>
     );

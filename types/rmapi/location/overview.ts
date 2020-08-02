@@ -1,5 +1,5 @@
 export type LocationOverviewItem = {
-    id: number;
+    id: string;
     name: string;
     dimension: string;
 };

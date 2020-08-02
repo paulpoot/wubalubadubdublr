@@ -1,5 +1,5 @@
 export type EpisodeOverviewItem = {
-    id: number;
+    id: string;
     name: string;
     episode: string;
 };

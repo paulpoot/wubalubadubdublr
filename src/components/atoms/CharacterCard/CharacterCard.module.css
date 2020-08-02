@@ -7,14 +7,22 @@
     overflow: hidden;
     background-color: var(--black-lighter);
     transition: all 0.2s ease-in-out;
-
-    &:hover {
-        box-shadow: var(--box-shadow-1);
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
+    box-shadow: var(--box-shadow-1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
     &:hover {
         cursor: pointer;
+        background-color: var(--black-lightest);
+        box-shadow: var(--box-shadow-2);
+    }
+
+    a {
+        border: 0;
+    }
+
+    .portrait {
+        max-width: 100%;
+        width: 100%;
     }
 
     .content {
